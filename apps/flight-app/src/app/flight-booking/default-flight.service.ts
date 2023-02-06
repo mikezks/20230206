@@ -4,11 +4,15 @@ import { Observable } from 'rxjs';
 import { Flight } from './flight';
 import { FlightService } from './flight.service';
 
+export function injectHttp(): HttpClient {
+  return inject(HttpClient);
+}
+
 @Injectable()
 export class DefaultFlightService implements FlightService {
   // We will refactor this to an observable in a later exercise!
   flights: Flight[] = [];
-  #http = inject(HttpClient);
+  #http = injectHttp();
 
   load(from: string, to: string): void {
     this.find(from, to).subscribe({
