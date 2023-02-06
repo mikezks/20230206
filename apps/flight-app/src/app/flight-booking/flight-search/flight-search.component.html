@@ -1,0 +1,90 @@
+<!-- src/app/flight-search/flight-search.component.html -->
+
+<h1>Flight Search</h1>
+
+<form #f="ngForm">
+  <div class="form-group">
+    <label>From:</label>
+    <input
+      [(ngModel)]="from"
+      [ngModelOptions]="{ updateOn: 'change' }"
+      name="from"
+      required
+      minlength="3"
+      appCity
+      class="form-control"
+    />
+  </div>
+
+  <div class="alert alert-danger" *ngIf="!f?.controls?.['from']?.valid">
+    This input is invalid.
+  </div>
+  <div
+    class="alert alert-danger"
+    *ngIf="f?.controls?.['from']?.hasError('required')"
+  >
+    This is a mandatory field.
+  </div>
+  <div
+    class="alert alert-danger"
+    *ngIf="f?.controls?.['from']?.hasError('minlength')"
+  >
+    Enter at least
+    {{ f?.controls?.['from']?.errors?.['minlength']?.requiredLength }} chars.
+  </div>
+
+  <div
+    class="alert alert-danger"
+    *ngIf="f?.controls?.['from']?.hasError('appCity')"
+  >
+    This city must not be used.
+  </div>
+
+  <div class="alert alert-danger" *ngIf="f?.controls?.['from']?.errors">
+    <pre>
+Internal error object: {{
+          f?.controls?.['from']?.errors | json
+      }}</pre
+    >
+  </div>
+
+  <div class="form-group">
+    <label>To:</label>
+    <input [(ngModel)]="to" name="to" class="form-control" />
+  </div>
+
+  <div class="form-group">
+    <input
+      [(ngModel)]="delayFilter"
+      name="delay"
+      type="checkbox"
+      id="delayFilter"
+    />
+    &nbsp;
+    <label for="delayFilter">Delayed</label>
+  </div>
+
+  <div class="form-group">
+    <button class="btn btn-default" (click)="search()">Search</button>
+
+    <button
+      class="btn btn-default"
+      (click)="delay()"
+      *ngIf="flights.length > 0"
+    >
+      Delay
+    </button>
+  </div>
+</form>
+
+<div class="row">
+  <div
+    *ngFor="let f of flights"
+    class="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-3"
+  >
+    <app-flight-card [item]="f" [(selected)]="basket[f.id]"> </app-flight-card>
+  </div>
+</div>
+
+<b>Basket</b>
+<pre>{{ basket | json }}</pre>
