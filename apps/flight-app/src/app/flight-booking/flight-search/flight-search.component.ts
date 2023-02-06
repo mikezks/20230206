@@ -7,6 +7,7 @@ import { Flight } from '../flight';
 import { FlightService } from '../flight.service';
 import { FlightCardComponent } from '../flight-card/flight-card.component';
 import { CityValidationDirective } from '../../shared/validation/city-validation.directive';
+import { DummyFlightService } from '../dummy-flight.service';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -22,6 +23,12 @@ import { CityValidationDirective } from '../../shared/validation/city-validation
   ],
   templateUrl: './flight-search.component.html',
   styleUrls: ['./flight-search.component.scss'],
+  providers: [
+    /* {
+      provide: FlightService,
+      useClass: DummyFlightService
+    } */
+  ],
 })
 export class FlightSearchComponent implements OnInit {
   from = 'Hamburg';

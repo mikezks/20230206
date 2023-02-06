@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 // src/app/default-flight.service.ts
 
 import { Injectable } from '@angular/core';
@@ -10,13 +9,12 @@ import { Flight } from './flight';
 
 @Injectable({
   providedIn: 'root',
-  useFactory: (http: HttpClient) => {
+  useFactory: () => {
     if (config.flightServiceType === 'dummy') {
       return new DummyFlightService();
     }
     return new DefaultFlightService();
   },
-  deps: [HttpClient],
 })
 export abstract class FlightService {
   flights: Flight[] = [];
