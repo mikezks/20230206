@@ -7,16 +7,12 @@ import {
 } from '@angular/router';
 import { AppComponent } from './app/app.component';
 import { appRoutes } from './app/app.routes';
+import { provideInitConfig } from './app/app-runtime.config';
 
 bootstrapApplication(AppComponent, {
   providers: [
     provideRouter(appRoutes, withEnabledBlockingInitialNavigation()),
-
     provideHttpClient(),
-
-    /* {
-      provide: BASE_URL,
-      useValue: ''
-    } */
+    provideInitConfig(),
   ],
 }).catch((err) => console.error(err));

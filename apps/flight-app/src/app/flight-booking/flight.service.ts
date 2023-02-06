@@ -1,13 +1,23 @@
+import { inject } from '@angular/core';
 // src/app/default-flight.service.ts
 
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { config } from '../app.config';
+import { ConfigService } from '../app-runtime.config';
 import { DefaultFlightService } from './default-flight.service';
 import { DummyFlightService } from './dummy-flight.service';
 import { Flight } from './flight';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+  useFactory: () => {
+    const configService = inject(ConfigService);
+    if (configService.config.value.flightServiceType === 'dummy') {
+      return new DummyFlightService();
+    }
+    return new DefaultFlightService();
+  },
+})
 export abstract class FlightService {
   flights: Flight[] = [];
   abstract load(from: string, to: string): void;
