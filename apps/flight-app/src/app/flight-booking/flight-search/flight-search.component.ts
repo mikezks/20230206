@@ -1,7 +1,7 @@
 // src/app/flight-search/flight-search.component.ts
 
 import { JsonPipe, NgFor, NgIf } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Optional } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Flight } from '../flight';
 import { FlightService } from '../flight.service';
@@ -38,7 +38,7 @@ export class FlightSearchComponent implements OnInit {
 
   get flights() {
     // We will refactor this to an observable in a later exercise!
-    return this.flightService.flights;
+    return [] as Flight[]; //this.flightService.flights;
   }
 
   basket: { [key: number]: boolean } = {
@@ -46,13 +46,13 @@ export class FlightSearchComponent implements OnInit {
     5: true,
   };
 
-  constructor(private flightService: FlightService) {}
+  constructor(@Optional() private flightService: FlightService) {}
 
   // eslint-disable-next-line @angular-eslint/no-empty-lifecycle-method, @typescript-eslint/no-empty-function
   ngOnInit(): void {}
 
   search(): void {
-    this.flightService.load(this.from, this.to);
+    this.flightService?.load(this.from, this.to);
   }
 
   select(f: Flight): void {

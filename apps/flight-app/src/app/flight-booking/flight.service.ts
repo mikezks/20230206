@@ -7,15 +7,7 @@ import { DefaultFlightService } from './default-flight.service';
 import { DummyFlightService } from './dummy-flight.service';
 import { Flight } from './flight';
 
-@Injectable({
-  providedIn: 'root',
-  useFactory: () => {
-    if (config.flightServiceType === 'dummy') {
-      return new DummyFlightService();
-    }
-    return new DefaultFlightService();
-  },
-})
+@Injectable()
 export abstract class FlightService {
   flights: Flight[] = [];
   abstract load(from: string, to: string): void;
