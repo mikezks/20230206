@@ -10,6 +10,10 @@ import {
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Flight } from '../flight';
+import {
+  validateCity,
+  validateCityWithParams,
+} from '../../shared/validation/city-validator';
 
 @Component({
   selector: 'app-flight-edit',
@@ -30,8 +34,14 @@ export class FlightEditComponent implements OnInit {
   editForm = inject(NonNullableFormBuilder).group(
     {
       id: [0],
-      from: ['Graz', [Validators.required, Validators.minLength(3)]],
-      to: ['Hamburg'],
+      from: [
+        'Graz',
+        [Validators.required, Validators.minLength(3), validateCity],
+      ],
+      to: [
+        'Hamburg',
+        [validateCityWithParams(['Graz', 'Hamburg', 'Amsterdam'])],
+      ],
       date: [new Date().toISOString()],
       delayed: [false],
     },
