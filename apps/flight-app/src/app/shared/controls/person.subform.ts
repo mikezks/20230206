@@ -6,7 +6,6 @@ import {
   FormGroup,
   FormGroupDirective,
   ReactiveFormsModule,
-  UntypedFormGroup,
 } from '@angular/forms';
 
 type PersonForm = FormGroup<{
