@@ -1,3 +1,7 @@
+import {
+  Address,
+  AddressControl,
+} from './../../shared/controls/address.control';
 import { JsonPipe, NgIf, NgStyle } from '@angular/common';
 import { inject } from '@angular/core';
 import {
@@ -18,14 +22,9 @@ import {
 @Component({
   selector: 'app-flight-edit',
   standalone: true,
-  imports: [
-    NgStyle,
-    NgIf,
-    JsonPipe, // or CommonModule
-    ReactiveFormsModule,
-  ],
   templateUrl: './flight-edit.component.html',
   styleUrls: ['./flight-edit.component.scss'],
+  imports: [NgStyle, NgIf, JsonPipe, ReactiveFormsModule, AddressControl],
 })
 export class FlightEditComponent implements OnInit {
   id = 0;
@@ -44,6 +43,15 @@ export class FlightEditComponent implements OnInit {
       ],
       date: [new Date().toISOString()],
       delayed: [false],
+      address: [
+        {
+          street: '',
+          number: '',
+          zip: '',
+          city: '',
+          country: '',
+        } as Address,
+      ],
     },
     { updateOn: 'change' }
   );
@@ -63,7 +71,6 @@ export class FlightEditComponent implements OnInit {
     );
 
     this.editForm.valueChanges.subscribe(console.log);
-    // this.editForm.updateValueAndValidity();
   }
 
   save(): void {
@@ -77,6 +84,12 @@ export class FlightEditComponent implements OnInit {
 
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   dispatch(flight: Flight): void {}
+
+  toggleDisableAddress(): void {
+    this.editForm.controls.address.enabled
+      ? this.editForm.controls.address.disable()
+      : this.editForm.controls.address.enable();
+  }
 
   reset(): void {
     this.editForm.reset();

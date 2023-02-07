@@ -58,6 +58,7 @@
         <label>Date:</label>
         <input formControlName="date" class="form-control" />
       </div>
+      <app-address-control formControlName="address"></app-address-control>
 
       <div class="form-group">
         <button
@@ -68,6 +69,9 @@
           Save
         </button>
         <button (click)="reset()" class="btn btn-danger">Reset</button>
+        <button (click)="toggleDisableAddress()" class="btn btn-danger">
+          {{ editForm.controls.address.enabled ? 'disable' : 'enable' }} Address
+        </button>
       </div>
     </form>
   </div>
