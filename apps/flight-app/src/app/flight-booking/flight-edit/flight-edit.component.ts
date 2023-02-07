@@ -1,3 +1,4 @@
+import { PersonSubformComponent } from './../../shared/controls/person.subform';
 import {
   Address,
   AddressControl,
@@ -5,6 +6,7 @@ import {
 import { JsonPipe, NgIf, NgStyle } from '@angular/common';
 import { inject } from '@angular/core';
 import {
+  FormGroup,
   NonNullableFormBuilder,
   ReactiveFormsModule,
   Validators,
@@ -24,7 +26,14 @@ import {
   standalone: true,
   templateUrl: './flight-edit.component.html',
   styleUrls: ['./flight-edit.component.scss'],
-  imports: [NgStyle, NgIf, JsonPipe, ReactiveFormsModule, AddressControl],
+  imports: [
+    NgStyle,
+    NgIf,
+    JsonPipe,
+    ReactiveFormsModule,
+    AddressControl,
+    PersonSubformComponent,
+  ],
 })
 export class FlightEditComponent implements OnInit {
   id = 0;
@@ -52,6 +61,7 @@ export class FlightEditComponent implements OnInit {
           country: '',
         } as Address,
       ],
+      person: new FormGroup({}),
     },
     { updateOn: 'change' }
   );
