@@ -30,7 +30,7 @@ export class FlightEditComponent implements OnInit {
   editForm = inject(NonNullableFormBuilder).group(
     {
       id: [0],
-      from: ['Graz', [Validators.required, Validators.minLength(5)]],
+      from: ['Graz', [Validators.required, Validators.minLength(3)]],
       to: ['Hamburg'],
       date: [new Date().toISOString()],
       delayed: [false],
@@ -47,6 +47,10 @@ export class FlightEditComponent implements OnInit {
       this.showDetails = p['showDetails'];
       this.carColor = p['carColor'];
     });
+
+    this.editForm.controls.from.valueChanges.subscribe((value) =>
+      console.log('From value', value)
+    );
 
     this.editForm.valueChanges.subscribe(console.log);
     // this.editForm.updateValueAndValidity();
