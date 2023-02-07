@@ -1,4 +1,4 @@
-import { NgIf, NgStyle } from '@angular/common';
+import { JsonPipe, NgIf, NgStyle } from '@angular/common';
 import { inject } from '@angular/core';
 import {
   NonNullableFormBuilder,
@@ -14,7 +14,12 @@ import { Flight } from '../flight';
 @Component({
   selector: 'app-flight-edit',
   standalone: true,
-  imports: [NgStyle, NgIf, ReactiveFormsModule],
+  imports: [
+    NgStyle,
+    NgIf,
+    JsonPipe, // or CommonModule
+    ReactiveFormsModule,
+  ],
   templateUrl: './flight-edit.component.html',
   styleUrls: ['./flight-edit.component.scss'],
 })
