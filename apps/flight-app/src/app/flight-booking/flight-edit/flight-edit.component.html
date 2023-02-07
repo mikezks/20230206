@@ -1,4 +1,72 @@
-<h1>Flight Edit</h1>
+<div class="card">
+  <div class="card-header">
+    <h2 class="card-title">Flight Edit</h2>
+  </div>
 
-<p>Id: {{ id }}</p>
-<p>ShowDetail: {{ id }}</p>
+  <div class="card-body">
+    <p>Show Details: {{ showDetails }}</p>
+    <p [ngStyle]="{ 'background-color': carColor, color: 'white' }">
+      Car Color: {{ carColor }}
+    </p>
+
+    <form [formGroup]="editForm">
+      <div class="form-group">
+        <label>ID:</label>
+        <input formControlName="id" class="form-control" />
+      </div>
+      <div class="form-group">
+        <label>From:</label>
+        <input formControlName="from" class="form-control" />
+      </div>
+      <div
+        *ngIf="editForm.controls.from.hasError('required')"
+        class="alert alert-danger"
+      >
+        From control is mandatory - please enter a value.
+      </div>
+      <div
+        *ngIf="editForm.controls.from.hasError('minlength')"
+        class="alert alert-danger"
+      >
+        You entered too less chars - please enter at least
+        {{ editForm.controls.from.errors?.['minlength'].requiredLength }}
+        chars.
+      </div>
+
+      <div class="form-group">
+        <label>To:</label>
+        <input formControlName="to" class="form-control" />
+      </div>
+      <div class="form-group">
+        <label>Date:</label>
+        <input formControlName="date" class="form-control" />
+      </div>
+
+      <div class="form-group">
+        <button
+          (click)="save()"
+          [disabled]="editForm.touched && !editForm.valid"
+          class="btn btn-success"
+        >
+          Save
+        </button>
+        <button (click)="reset()" class="btn btn-danger">Reset</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!--
+    editForm.invalid
+    editForm.valid
+    editForm.pending
+    editForm.disabled
+
+    editForm.dirty
+    editForm.pristine
+
+    editForm.touched
+    editForm.untouched
+
+    editForm.value
+ -->

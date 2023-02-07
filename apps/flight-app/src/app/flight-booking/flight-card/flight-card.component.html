@@ -22,7 +22,11 @@
       </button>
       <a
         class="btn btn-default"
-        [routerLink]="['../flight-edit', item?.id, { showDetails: false }]"
+        [routerLink]="[
+          '../flight-edit',
+          item?.id,
+          { showDetails: false, carColor: 'black' }
+        ]"
         >Edit</a
       >
     </p>
