@@ -69,11 +69,16 @@ export class FlightEditComponent implements OnInit {
 
   ngOnInit(): void {
     this.#route.params.subscribe((p) => {
-      this.editForm.patchValue({
+      /* this.editForm.patchValue({
         id: p['id'],
-      });
+      }); */
       this.showDetails = p['showDetails'];
       this.carColor = p['carColor'];
+    });
+
+    this.#route.data.subscribe((data) => {
+      this.editForm.patchValue(data?.['flight']);
+      console.log(data?.['name']);
     });
 
     this.editForm.controls.from.valueChanges.subscribe((value) =>

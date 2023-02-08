@@ -22,5 +22,6 @@ export abstract class FlightService {
   flights: Flight[] = [];
   abstract load(from: string, to: string): void;
   abstract find(from: string, to: string): Observable<Flight[]>;
+  abstract findById(id: number): Observable<Flight>;
   abstract delay(): void;
 }

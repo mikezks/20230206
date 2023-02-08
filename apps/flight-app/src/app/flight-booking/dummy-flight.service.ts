@@ -30,6 +30,9 @@ export class DummyFlightService implements FlightService {
   find(from: string, to: string): Observable<Flight[]> {
     return of(this.#getInitialFlights());
   }
+  findById(id: number): Observable<Flight> {
+    return of(this.#getInitialFlights()[0]);
+  }
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   delay(): void {}
 }
