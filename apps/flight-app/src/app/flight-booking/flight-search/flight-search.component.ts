@@ -1,3 +1,4 @@
+import { inject, ViewContainerRef } from '@angular/core';
 // src/app/flight-search/flight-search.component.ts
 
 import { JsonPipe, NgFor, NgIf } from '@angular/common';
@@ -46,6 +47,8 @@ export class FlightSearchComponent implements OnInit {
     5: true,
   };
 
+  #vc = inject(ViewContainerRef);
+
   constructor(private flightService: FlightService) {}
 
   // eslint-disable-next-line @angular-eslint/no-empty-lifecycle-method, @typescript-eslint/no-empty-function
@@ -53,6 +56,7 @@ export class FlightSearchComponent implements OnInit {
 
   search(): void {
     this.flightService.load(this.from, this.to);
+    // this.dynComponent();
   }
 
   select(f: Flight): void {
@@ -61,5 +65,11 @@ export class FlightSearchComponent implements OnInit {
 
   delay(): void {
     this.flightService.delay();
+  }
+
+  dynComponent(): void {
+    import('../flight-edit/flight-edit.component').then((esm) => {
+      this.#vc.createComponent(esm.FlightEditComponent);
+    });
   }
 }
