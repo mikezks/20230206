@@ -56,7 +56,8 @@ export class FlightSearchComponent implements OnInit {
 
   search(): void {
     this.flightService.load(this.from, this.to);
-    // this.dynComponent();
+    // this.dynComponentStandalone();
+    // this.dynComponentNgModuleIvy();
   }
 
   select(f: Flight): void {
@@ -67,9 +68,15 @@ export class FlightSearchComponent implements OnInit {
     this.flightService.delay();
   }
 
-  dynComponent(): void {
+  dynComponentStandalone(): void {
     import('../flight-edit/flight-edit.component').then((esm) => {
       this.#vc.createComponent(esm.FlightEditComponent);
+    });
+  }
+
+  dynComponentNgModuleIvy(): void {
+    import('../../dyn-component-with-module').then((esm) => {
+      this.#vc.createComponent(esm.DynamicComponent);
     });
   }
 }

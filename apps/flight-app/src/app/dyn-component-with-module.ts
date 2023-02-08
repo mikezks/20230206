@@ -5,10 +5,10 @@ import { Component, NgModule } from '@angular/core';
   selector: 'app-dynamic-comp',
   template: `
     <div class="card">
-      <div class="header">
-        <h1 class="title">Dynamic Component</h1>
+      <div class="card-header" *ngIf="show">
+        <h1 class="card-title">Dynamic Component</h1>
       </div>
-      <div class="content">
+      <div class="card-body">
         <p>{{ content }}</p>
         <button (click)="changeContent()" class="btn btn-default">
           change contentS
@@ -19,9 +19,11 @@ import { Component, NgModule } from '@angular/core';
 })
 export class DynamicComponent {
   content = 'This is a dynamic component.';
+  show = true;
 
   changeContent(): void {
     this.content = 'My new content text.';
+    this.show = !this.show;
   }
 }
 
