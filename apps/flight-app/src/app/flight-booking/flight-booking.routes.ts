@@ -38,3 +38,5 @@ export const FLIGHT_BOOKING_ROUTES: Routes = [
     ],
   },
 ];
+
+export default FLIGHT_BOOKING_ROUTES;

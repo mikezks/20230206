@@ -24,10 +24,7 @@ export const appRoutes: Route[] = [
   },
   {
     path: 'flight-booking',
-    loadChildren: () =>
-      import('./flight-booking/flight-booking.routes').then(
-        (esm) => esm.FLIGHT_BOOKING_ROUTES
-      ),
+    loadChildren: () => import('./flight-booking/flight-booking.routes'),
     canMatch: [
       () =>
         !!inject(AuthService).username ||
