@@ -15,8 +15,8 @@ bootstrapApplication(AppComponent, {
   providers: [
     provideRouter(
       appRoutes,
-      withEnabledBlockingInitialNavigation(),
-      withPreloading(PreloadAllModules)
+      withEnabledBlockingInitialNavigation()
+      // withPreloading(PreloadAllModules)
     ),
     provideHttpClient(),
     provideInitConfig(),

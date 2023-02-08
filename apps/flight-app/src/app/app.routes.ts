@@ -25,11 +25,11 @@ export const appRoutes: Route[] = [
   {
     path: 'flight-booking',
     loadChildren: () => import('./flight-booking/flight-booking.routes'),
-    canMatch: [
+    /* canMatch: [
       () =>
         !!inject(AuthService).username ||
         inject(Router).createUrlTree(['/home', { needsLogin: true }]),
-    ],
+    ], */
   },
   {
     path: 'basket',
