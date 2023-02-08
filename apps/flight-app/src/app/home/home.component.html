@@ -6,6 +6,9 @@
   </div>
 
   <div class="card-body">
+    <div *ngIf="needsLogin$ | async" class="alert alert-info">
+      Please login to allow the navigation.
+    </div>
     <button class="btn btn-default" (click)="login()">Login</button>
     <button class="btn btn-default" (click)="logout()">Logout</button>
   </div>
