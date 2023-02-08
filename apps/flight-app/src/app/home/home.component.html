@@ -1,3 +1,12 @@
 <!-- src/app/home/home.component.html -->
 
-<h1>Welcome!</h1>
+<div class="card">
+  <div class="card-header">
+    <h2 class="card-title">Welcome {{ username }}</h2>
+  </div>
+
+  <div class="card-body">
+    <button class="btn btn-default" (click)="login()">Login</button>
+    <button class="btn btn-default" (click)="logout()">Logout</button>
+  </div>
+</div>
