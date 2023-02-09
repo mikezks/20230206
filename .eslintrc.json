@@ -64,6 +64,7 @@
               {
                 "sourceTag": "type:feature",
                 "onlyDependOnLibsWithTags": [
+                  "type:api",
                   "type:ui",
                   "type:domain-logic",
                   "type:util"
@@ -86,12 +87,12 @@
                 "onlyDependOnLibsWithTags": ["domain:tickets", "domain:shared"]
               },
               {
-                "sourceTag": "domain:tickets",
-                "onlyDependOnLibsWithTags": ["domain:tickets", "domain:shared"]
-              },
-              {
                 "sourceTag": "domain:checkin",
                 "onlyDependOnLibsWithTags": ["domain:checkin", "domain:shared"]
+              },
+              {
+                "sourceTag": "domain:luggage",
+                "onlyDependOnLibsWithTags": ["domain:luggage", "domain:shared"]
               }
             ]
           }
