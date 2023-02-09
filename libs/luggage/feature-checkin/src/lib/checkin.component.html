@@ -1,0 +1,5 @@
+<h1>luggage-checkin</h1>
+
+<div *ngFor="let luggage of luggageList$ | async">
+  <common-luggage-card [luggage]="luggage"> </common-luggage-card>
+</div>
