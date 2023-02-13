@@ -1,19 +1,17 @@
-import { provideHttpClient } from '@angular/common/http';
-import { importProvidersFrom } from '@angular/core';
-import { MatDialogModule } from '@angular/material/dialog';
-import { bootstrapApplication } from '@angular/platform-browser';
-import {
-  PreloadAllModules,
-  provideRouter,
-  withPreloading,
-} from '@angular/router';
-import { AppComponent } from './app/app.component';
-import { APP_ROUTES } from './app/app.routes';
+// import { initFederation } from '@angular-architects/module-federation';
 
-bootstrapApplication(AppComponent, {
-  providers: [
-    provideHttpClient(),
-    provideRouter(APP_ROUTES, withPreloading(PreloadAllModules)),
-    importProvidersFrom(MatDialogModule),
-  ],
-});
+(async () => {
+  //
+  // Module Federation commented out to simplify further labs.
+  // Feel free to uncomment this again.
+  //
+
+  // try {
+  //   await initFederation('/assets/mf.manifest.json');
+  // }
+  // catch(e) {
+  //   console.error(e);
+  // }
+
+  await import('./bootstrap');
+})();
