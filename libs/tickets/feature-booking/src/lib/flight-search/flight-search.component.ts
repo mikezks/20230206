@@ -1,7 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { FlightCardComponent } from '../flight-card/flight-card.component';
+import { Store } from '@ngrx/store';
+import { LetModule } from '@ngrx/component';
 import { CityPipe } from '@flight-demo/shared/ui-common';
 import {
   Flight,
@@ -9,14 +10,20 @@ import {
   ticketsActions,
   ticketsFeature,
 } from '@flight-demo/tickets/domain';
-import { Store } from '@ngrx/store';
+import { FlightCardComponent } from '../flight-card/flight-card.component';
 
 @Component({
   selector: 'app-flight-search',
   standalone: true,
   templateUrl: './flight-search.component.html',
   styleUrls: ['./flight-search.component.css'],
-  imports: [CommonModule, FormsModule, CityPipe, FlightCardComponent],
+  imports: [
+    CommonModule,
+    FormsModule,
+    CityPipe,
+    FlightCardComponent,
+    LetModule,
+  ],
 })
 export class FlightSearchComponent {
   #store = inject(Store);
@@ -45,4 +52,24 @@ export class FlightSearchComponent {
       },
     });
   }
+
+  delay(flight: Flight): void {
+    this.#store.dispatch(
+      ticketsActions.flightUpdate({
+        flight: {
+          ...flight,
+          date: addMinutesToDate(flight.date, 5).toISOString(),
+          delayed: true,
+        },
+      })
+    );
+  }
 }
+
+export const addMinutesToDate = (
+  date: Date | string,
+  minutes: number
+): Date => {
+  const dateObj = date instanceof Date ? date : new Date(date);
+  return new Date(dateObj.getTime() + minutes * 60 * 1_000);
+};

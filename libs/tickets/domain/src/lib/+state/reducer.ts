@@ -24,6 +24,23 @@ export const ticketsFeature = createFeature({
         ...state,
         flights: action.flights,
       };
+    }),
+    on(ticketsActions.flightUpdate, (state, action) => {
+      const updated = action.flight;
+      const flights = state.flights.map((f) =>
+        f.id === updated.id ? updated : f
+      );
+
+      return {
+        ...state,
+        flights,
+      };
+    }),
+    on(ticketsActions.flightsClear, (state) => {
+      return {
+        ...state,
+        flights: [],
+      };
     })
   ),
 });
