@@ -19,20 +19,29 @@
     </div>
 
     <div>
-      <input name="id" [(ngModel)]="flight.id" />
-      <input
-        name="from"
-        [(ngModel)]="flight.from"
-        [appCity]="['Paris', 'London', 'Berlin']"
-        appAsyncCity
-        required
-        minlength="3"
-      />
-      <input name="to" [(ngModel)]="flight.to" />
-      <input name="date" [(ngModel)]="flight.date" />
+      <div class="form-group">
+        <input name="id" [(ngModel)]="flight.id" class="form-control" />
+      </div>
+      <div class="form-group">
+        <input
+          name="from"
+          [(ngModel)]="flight.from"
+          [appCity]="['Paris', 'London', 'Berlin']"
+          class="form-control"
+          appAsyncCity
+          required
+          minlength="3"
+        />
+      </div>
+      <div class="form-group">
+        <input name="to" [(ngModel)]="flight.to" class="form-control" />
+      </div>
+      <div class="form-group">
+        <input name="date" [(ngModel)]="flight.date" class="form-control" />
+      </div>
     </div>
 
-    <div>
+    <div class="form-group">
       <input
         name="delayed"
         id="delayed"
