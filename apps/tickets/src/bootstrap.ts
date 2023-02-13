@@ -12,13 +12,16 @@ import { provideEffects } from '@ngrx/effects';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { AppComponent } from './app/app.component';
 import { APP_ROUTES } from './app/app.routes';
+import { provideRouterStore } from '@ngrx/router-store';
+import { routerReducer } from '@ngrx/router-store';
 
 bootstrapApplication(AppComponent, {
   providers: [
     provideHttpClient(),
     provideRouter(APP_ROUTES, withPreloading(PreloadAllModules)),
-    provideStore(),
+    provideStore({ router: routerReducer }),
     provideEffects(),
+    provideRouterStore(),
     isDevMode() ? provideStoreDevtools() : [],
     importProvidersFrom(MatDialogModule),
   ],
