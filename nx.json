@@ -44,12 +44,10 @@
       "inputs": ["default", "^production"]
     }
   },
-  "cli": {
-    "schematicCollections": ["@angular-eslint/schematics"]
-  },
+  "cli": {},
   "generators": {
     "@nrwl/angular:application": {
-      "style": "scss",
+      "style": "css",
       "linter": "eslint",
       "unitTestRunner": "jest",
       "e2eTestRunner": "none"
@@ -59,8 +57,8 @@
       "unitTestRunner": "jest"
     },
     "@nrwl/angular:component": {
-      "style": "scss"
+      "style": "css"
     }
   },
-  "defaultProject": "tickets"
+  "defaultProject": "checkin"
 }

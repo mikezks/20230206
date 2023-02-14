@@ -35,7 +35,7 @@ body {
 }
 body {
   margin: 0;
-  /* font-family: Roboto, 'Helvetica Neue', sans-serif; */
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
 }
 
 .mr5 {
@@ -59,4 +59,8 @@ body {
 
 .secondary-content {
   padding: 5px;
+}
+
+.mb10 {
+  margin-bottom: 10px;
 }
