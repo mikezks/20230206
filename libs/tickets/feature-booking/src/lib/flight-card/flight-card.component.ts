@@ -1,4 +1,6 @@
 import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   ElementRef,
   EventEmitter,
@@ -20,11 +22,13 @@ import { initFlight } from '@flight-demo/tickets/domain';
   imports: [CommonModule, CityPipe, StatusToggleComponent, RouterLink],
   templateUrl: './flight-card.component.html',
   styleUrls: ['./flight-card.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FlightCardComponent {
   private dialog = inject(MatDialog);
   private element = inject(ElementRef);
   private zone = inject(NgZone);
+  private cdRef = inject(ChangeDetectorRef);
 
   @Input() item = initFlight;
   @Input() selected = false;
@@ -33,6 +37,11 @@ export class FlightCardComponent {
   select() {
     this.selected = true;
     this.selectedChange.emit(this.selected);
+
+    /* this.cdRef.markForCheck();
+    this.cdRef.detectChanges();
+    this.cdRef.detach();
+    this.cdRef.reattach(); */
   }
 
   deselect() {
