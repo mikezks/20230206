@@ -6,7 +6,6 @@ import { LetModule } from '@ngrx/component';
 import { CityPipe } from '@flight-demo/shared/ui-common';
 import {
   Flight,
-  FlightService,
   ticketsActions,
   ticketsFeature,
 } from '@flight-demo/tickets/domain';
@@ -36,21 +35,17 @@ export class FlightSearchComponent {
     5: true,
   };
 
-  private flightService = inject(FlightService);
-
   search(): void {
     if (!this.from || !this.to) {
       return;
     }
 
-    this.flightService.find(this.from, this.to).subscribe({
-      next: (flights) => {
-        this.#store.dispatch(ticketsActions.flightsLoaded({ flights }));
-      },
-      error: (errResp) => {
-        console.error('Error loading flights', errResp);
-      },
-    });
+    this.#store.dispatch(
+      ticketsActions.flightsLoad({
+        from: this.from,
+        to: this.to,
+      })
+    );
   }
 
   delay(flight: Flight): void {

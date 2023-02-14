@@ -1,3 +1,4 @@
+import { TicketsEffects } from './../../../domain/src/lib/+state/effects';
 import { Routes } from '@angular/router';
 import { ticketsFeature } from '@flight-demo/tickets/domain';
 import { provideState } from '@ngrx/store';
@@ -31,7 +32,7 @@ export const FLIGHT_BOOKING_ROUTES: Routes = [
         component: PassengerSearchComponent,
       },
     ],
-    providers: [provideState(ticketsFeature), provideEffects()],
+    providers: [provideState(ticketsFeature), provideEffects(TicketsEffects)],
   },
 ];
 
