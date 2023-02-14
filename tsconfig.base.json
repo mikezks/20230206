@@ -42,9 +42,9 @@
       "@flight-demo/shared/util-validation": [
         "libs/shared/util-validation/src/lib/index.ts"
       ],
-      "@flight-demo/tickets/domain": ["libs/tickets/domain/src/lib/index.ts"],
+      "@flight-demo/tickets/domain": ["apps/tickets/src/app/domain/index.ts"],
       "@flight-demo/tickets/feature-booking": [
-        "libs/tickets/feature-booking/src/lib/index.ts"
+        "apps/tickets/src/app/feature-booking/index.ts"
       ],
       "@flight-demo/tickets/feature-next-flights": [
         "libs/tickets/feature-next-flights/src/lib/index.ts"
